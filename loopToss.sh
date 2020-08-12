@@ -1,19 +1,15 @@
 #!/bin/bash -x
-numOfTosses=0
-numOfHeads=0
-numOfTails=0
-while [ $numOfTosses -lt 10]
+
+numberOfHeads=0
+numberOfTails=0
+for (( i=0 ; i<10 ; i++ ))
 do
-	tossOutCome=$((RANDOM%2))
-	if [ $tossoutCome -eq 0 ]
+	coinFlip=$((RANDOM%2))
+	if [ $coinFlip -eq 0 ]
 	then
-		echo "Heads"
-		((numOfHeads++))
-		((numOfTosses++))
+		((numberOfHeads++))
 	else
-		echo "Tails"
-		((numOfTails++))
-		((numOfTosses++))
+		((numberOfTails++))
 	fi
 done
-echo "Number of heads: $numOfHeads Number of tails: $numOfTails"
+echo "Heads has won $numberOfHeads times and tails has won $numberOfTails times"
