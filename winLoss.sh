@@ -1,25 +1,27 @@
 #!/bin/bash -x
-numOfTosses=0
-numOfHeads=0
-numOfTails=0
-while [ $numOfTosses -lt 41 ]
+
+numberOfHeads=0
+numberOfTails=0
+for (( i=0 ; ; i++ ))
 do
-	tossOutCome=$((RANDOM%2))
-	if [ $tossOutCome -eq 0 ]
+	coinFlip=$((RANDOM%2))
+	if [ $coinFlip -eq 0 ]
 	then
-		echo "Heads"
-		((numOfHeads++))
-		((numOfTosses++))
+		((numberOfHeads++))
 	else
-		echo "Tails"
-		((numOfTails++))
-		((numOfTosses++))
+		((numberOfTails++))
+	fi
+	if [ $numberOfHeads -eq 21 ]
+	then
+		echo "Heads win by $(($numberOfHeads-$numberOfTails))"
+		break
+	elif [ $numberOfTails -eq 21 ]
+	then
+		echo "Tails win by $(($numberOfTails-$numberOfHeads))"
+		break
+	elif [ $numberOfHeads -eq 20 ] && [ $numberOfTails -eq 20 ]
+	then
+		echo "Tie"
+		break
 	fi
 done
-echo "Numver of heads: $numOfHeads Number of tails: $numOfTails" 
-if [ $numOfHeads -eq 21 ]
-then
-	echo "Heads is Winner"
-else
-	echo "Tails is Winner"
-fi
