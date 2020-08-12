@@ -1,8 +1,9 @@
 #!/bin/bash -x
-Toss=$(( RANDOM%2+1 )) 
-if [ $Toss -eq 1 ]
+
+coinFlip=$((RANDOM%2))
+if [ $coinFlip -eq 0 ]
 then
-	echo "Head"
+	echo "Heads is winner"
 else
-	echo "Tail"
+	echo "Tails is winner"
 fi
